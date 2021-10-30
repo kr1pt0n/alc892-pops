@@ -1,7 +1,7 @@
 # ALC892-POPS
 Solucion al problema de pops de Ubuntu 20.04 en tarjetas realtek ALC892.
 Si no has tocado ninguna configuracion de los archivos de alsa-base.conf y power_save, obvia esto y ejecuta el script sin problemas.
-Pero si estuviste toqueteando el codigo;antes de ejecutar el script  sigue estos pasos.
+Pero si estuviste toqueteando el codigo ,antes de ejecutar el script  sigue estos pasos.
 
 
 PASO #1
