@@ -9,12 +9,12 @@ PASO #1
 
 *Asegurate de que al realizar la sgt consulta , recibas como resultado el valor de 1 de lo contrario el script te dira que ya esta deshabilitado el modo de ahorro de energia del controlador (lo que provocan los molestos POPs en bocinas y auriculares)
 
-  :~$ cat /sys/module/snd_hda_intel/parameters/power_save
+     cat /sys/module/snd_hda_intel/parameters/power_save
  
 
 *Si te devuelve el valor de 0, puedes cambiarlo ejecutando este comando
 
-  :~$ sed -i 's/0/1/g' /sys/module/snd_hda_intel/parameters/power_save
+     sed -i 's/0/1/g' /sys/module/snd_hda_intel/parameters/power_save
 
 PASO #2
 
