@@ -27,7 +27,7 @@ sleep 3
 
 clear
 
-sed -i 's/1/0/g' /home/kr1pt0n/solucion/power_save
+sed -i 's/1/0/g' /sys/module/snd_hda_intel/parameters/power_save
 
 echo "options snd-hda-intel probe_mask=1 model=auto power_save=0 power_save_controller=N" >> /etc/modprobe.d/alsa-base.conf
 
