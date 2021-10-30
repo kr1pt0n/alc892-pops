@@ -21,7 +21,7 @@ PASO #2
 
 *Ejecutar el sgt comando que buscara en el archivo de alsa-base, alguna coincidencia con el texto buscado, de modo que si encuentra alguna coincidencia te devolvera el valor = 1 , si no encuentra ninguna coincidencia devolvera el valor = 0
 
-:~$ grep -c 'options snd-hda-intel probe_mask=1 model=auto power_save=0 power_save_controller=N' /etc/modprobe.d/alsa-base.conf
+     grep -c 'options snd-hda-intel probe_mask=1 model=auto power_save=0 power_save_controller=N' /etc/modprobe.d/alsa-base.conf
 
 
 
