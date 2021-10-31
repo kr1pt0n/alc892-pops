@@ -1,4 +1,4 @@
-# ALC892-POPS
+# ALC892-POPS (UBUNTU 20.04)
 [![N|Solid](https://www.solvetic.com/uploads/tutorials/monthly_04_2020/0e09654e6e73e9d8fffae22c88d99877.png)](https://www.youtube.com/channel/UC78GA53wBavEM5bCq-ddOVA/videos)
 Solucion al problema de pops de Ubuntu 20.04 en tarjetas realtek ALC892.En este caso he logrado rastrear al culpable de los "saltos" y "pops",se trata de la rutina de ahorro de energía del controlador de sonido snd_hda_intel, el cual parecería intentar apagar y reencender las salidas de audio, con el molesto resultado que se describio anteriormente.
 Si no has tocado ninguna configuracion de los archivos de alsa-base.conf y power_save, obvia esto y ejecuta el script sin problemas.
