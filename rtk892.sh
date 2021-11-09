@@ -43,21 +43,19 @@ sleep 2
 
 echo -e "\n${blueColour}✘ [*] El modo de ahorro de energia aun se encuentra habilitado\n"
 
+#Detectar el kernel y verificar archivo .config.
+
 echo -e "${turquoiseColour}	*Kernel Detected*\n"
 echo "	>> $(uname -r)"
 echo ""
 
-
 sleep 3
-
 
 echo -e "\n${yellowColour}	✓ [*] El modo de ahorro de energia sera deshabilitado"
 
 sleep 3
 
-
 echo "options snd-hda-intel probe_mask=1 model=auto power_save=0 power_save_controller=N" >> /etc/modprobe.d/alsa-base.conf
-
 
 echo -e "\n${purpleColour}	✓ [*] El modo de ahorro de energia y los pops en los sonidos fueron retirados de su sistema."
 
