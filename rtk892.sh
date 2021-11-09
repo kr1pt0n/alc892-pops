@@ -48,8 +48,8 @@ sleep 2
 
 #Detectar el kernel y verificar archivo .config.
 
-echo -e "${turquoiseColour}	*System*\n"
-echo "[$(lsb_release -idrc)]"
+echo -e "${turquoiseColour}	*Kernel Detected*\n"
+echo "  [$(uname -a)]"
 echo ""
 
 sleep 3
