@@ -9,6 +9,7 @@ purpleColour="\e[0;35m\033[1m"
 turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 orangeColour="\e[38;5;166m"
+whiteColour="\e[0;37m"
 
 bold=$(tput bold)
 normal=$(tput sgr0)
@@ -30,23 +31,25 @@ echo -e "\n${redColour}✓ [*] El modo de ahorro de energia del controlador real
 #titulo y version del pequeño script en bash
 
 else
-echo -e "${redColour}::::::::::::::::::::::::::::::::::::::::"
-echo -e "${redColour}::				      ::"
-echo -e "${redColour}::	"Ubuntu Sound Repair v1.1"      ::"	
-echo -e "${redColour}::		by kr1pt0n	      ::"	
-echo -e "${redColour}::				      ::"	
-echo -e "${redColour}::::::::::::::::::::::::::::::::::::::::"
+echo -e "		${redColour}::::::::::::::::::::::::::::::::::::::::"
+echo -e "		${redColour}::				      ::"
+echo -e "		${redColour}::	"Ubuntu Sound Repair v1.1"      ::"	
+echo -e "		${redColour}::		by kr1pt0n	      ::"	
+echo -e "		${redColour}::				      ::"	
+echo -e "		${redColour}::::::::::::::::::::::::::::::::::::::::"
 
 
 
 sleep 2
 
-echo -e "\n${blueColour}✘ [*] El modo de ahorro de energia aun se encuentra habilitado\n"
+echo -e "\n${blueColour}✘ [*] La rutina de ahorro de energía del controlador de sonido "SND_HDA_INTEL" aun se encuentra habilitado\n"
+
+sleep 2
 
 #Detectar el kernel y verificar archivo .config.
 
-echo -e "${turquoiseColour}	*Kernel Detected*\n"
-echo "	>> $(uname -r)"
+echo -e "${turquoiseColour}	*System*\n"
+echo "[$(lsb_release -idrc)]"
 echo ""
 
 sleep 3
@@ -65,11 +68,11 @@ echo -e "\n${orangeColour}	✓ [*] Reinicie el sistema para establecer las confi
 
 sleep 3
 
-echo "		Gracias por usar ®USR"
+echo -e "		${whiteColour}Gracias por usar ®USR"
 
-echo "		by kr1pt0n"
+echo -e "		${whiteColour}by kr1pt0n"
 
-echo -e "		2021\n\n\n\n"
+echo -e "		${whiteColour}2021\n\n\n\n"
 
 tput cnorm
 
