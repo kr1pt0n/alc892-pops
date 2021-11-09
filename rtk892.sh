@@ -8,29 +8,71 @@ yellowColour="\e[0;33m\033[1m"
 purpleColour="\e[0;35m\033[1m"
 turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
+orangeColour="\e[38;5;166m"
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+
+clear
+
+#se retira el cursor del mouse y se analiza si se localiza el
+#archivo necesario en el directorio de alsa-base.conf.
+
+tput civis
 
 if  [ "$(cat /sys/module/snd_hda_intel/parameters/power_save)" == "0" ]; then
 
-echo -e "\n${redColour}[*]El modo de ahorro de energia del controlador realtek esta deshabilitado\n"
+
+
+echo -e "\n${redColour}✓ [*] El modo de ahorro de energia del controlador realtek esta deshabilitado\n"
+
+#titulo y version del pequeño script en bash
 
 else
+echo -e "${redColour}::::::::::::::::::::::::::::::::::::::::"
+echo -e "${redColour}::				      ::"
+echo -e "${redColour}::	"Ubuntu Sound Repair v1.1"      ::"	
+echo -e "${redColour}::		by kr1pt0n	      ::"	
+echo -e "${redColour}::				      ::"	
+echo -e "${redColour}::::::::::::::::::::::::::::::::::::::::"
 
-echo -e "\n${grayColour}[*]El modo de ahorro de energia aun habilitado\n"
+
+
+sleep 2
+
+echo -e "\n${blueColour}✘ [*] El modo de ahorro de energia aun se encuentra habilitado\n"
+
+echo -e "${turquoiseColour}	*Kernel Detected*\n"
+echo "	>> $(uname -r)"
+echo ""
+
 
 sleep 3
 
-clear
 
-echo -e "\n${blueColour}[*]El modo de ahorro de energia sera deshabilitado\n"
+echo -e "\n${yellowColour}	✓ [*] El modo de ahorro de energia sera deshabilitado"
 
 sleep 3
 
-clear
-
-sed -i 's/1/0/g' /sys/module/snd_hda_intel/parameters/power_save
 
 echo "options snd-hda-intel probe_mask=1 model=auto power_save=0 power_save_controller=N" >> /etc/modprobe.d/alsa-base.conf
 
-echo -e "\n${turquoiseColour}[*]El modo de ahorro de energia y los pops en los sonidos fueron retirados de su sistema.\n"
+
+echo -e "\n${purpleColour}	✓ [*] El modo de ahorro de energia y los pops en los sonidos fueron retirados de su sistema."
+
+sleep 3
+
+echo -e "\n${orangeColour}	✓ [*] Reinicie el sistema para establecer las configuraciones de forma permanente.\n\n\n"
+
+sleep 3
+
+echo "		Gracias por usar ®USR"
+
+echo "		by kr1pt0n"
+
+echo -e "		2021\n\n\n\n"
+
+tput cnorm
 
 fi
