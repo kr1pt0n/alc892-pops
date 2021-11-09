@@ -21,7 +21,7 @@ PASO #1
 
 *Si te devuelve el valor de 0, puedes cambiarlo ejecutando este comando
 
-     sed -i 's/0/1/g' /sys/module/snd_hda_intel/parameters/power_save
+     sudo sed -i 's/0/1/g' /sys/module/snd_hda_intel/parameters/power_save
 
 PASO #2
 
