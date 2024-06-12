@@ -7,7 +7,7 @@ Si no has tocado ninguna configuracion de los archivos de alsa-base.conf y power
 
      ./rtk892.sh
 
-NOTA:
+*Troubleshooting*
 
 Si estuviste toqueteando el codigo ,antes de ejecutar el script  sigue estos pasos.
 
