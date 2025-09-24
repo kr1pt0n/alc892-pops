@@ -23,7 +23,7 @@ Comprueba si el ahorro de energía del controlador está activado (culpable de l
 
 *     Si está en 1, puedes apagarlo temporalmente con:
 
-*     echo 0 | sudo tee /sys/module/snd_hda_intel/parameters/power_save
+     echo 0 | sudo tee /sys/module/snd_hda_intel/parameters/power_save
 
 
 PASO #2
