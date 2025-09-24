@@ -9,26 +9,29 @@ Si no has tocado ninguna configuracion de los archivos de alsa-base.conf y power
 
 *Troubleshooting*
 
-Si estuviste toqueteando el codigo ,antes de ejecutar el script  sigue estos pasos.
+Si estuviste manoseando el código antes de lanzar el script, sigue estos pasos:
 
 PASO #1
-
-
-*Asegurate de que al realizar la sgt consulta , recibas como resultado el valor de 1 de lo contrario el script te dira que ya esta deshabilitado el modo de ahorro de energia del controlador (lo que provocan los molestos POPs en bocinas y auriculares)
+Comprueba si el ahorro de energía del controlador está activado (culpable de los molestos POPs):
 
      cat /sys/module/snd_hda_intel/parameters/power_save
- 
 
-*Si te devuelve el valor de 0, puedes cambiarlo ejecutando este comando
 
-     sudo sed -i 's/0/1/g' /sys/module/snd_hda_intel/parameters/power_save
+Si devuelve 1 → está activado (malo).
+
+Si devuelve 0 → ya está desactivado (bien).
+
+Si está en 1, puedes apagarlo temporalmente con:
+
+     echo 0 | sudo tee /sys/module/snd_hda_intel/parameters/power_save
+
 
 PASO #2
+Verifica si ya existe la configuración en el archivo alsa-base.conf:
+
+     grep -c 'options snd-hda-intel power_save=0 power_save_controller=N' /etc/modprobe.d/alsa-base.conf
 
 
-*Ejecutar el sgt comando que buscara en el archivo de alsa-base, alguna coincidencia con el texto buscado, de modo que si encuentra alguna coincidencia te devolvera el valor = 1 , si no encuentra ninguna coincidencia devolvera el valor = 0
+Si devuelve 1 → ya está aplicado.
 
-     grep -c 'options snd-hda-intel probe_mask=1 model=auto power_save=0 power_save_controller=N' /etc/modprobe.d/alsa-base.conf
-
-
-
+Si devuelve 0 → no está, ejecuta el script para parchearlo.
