@@ -5,7 +5,7 @@ Si no has tocado ninguna configuracion de los archivos de alsa-base.conf y power
 
 * Asegurate de ejecutarlo como usuario root
 
-     ./rtk892.sh
+     ./deletepops.sh
 
 *Troubleshooting*
 
