@@ -1,37 +1,46 @@
-# ALC892-POPS (UBUNTU 20.04-21.04-24.04)
-[![N|Solid](https://www.solvetic.com/uploads/tutorials/monthly_04_2020/0e09654e6e73e9d8fffae22c88d99877.png)](https://www.youtube.com/channel/UC78GA53wBavEM5bCq-ddOVA/videos)
-Solucion al problema de pops de Ubuntu 20.04 en tarjetas realtek ALC892.En este caso he logrado rastrear al culpable de los "saltos" y "pops",se trata de la rutina de ahorro de energía del controlador de sonido snd_hda_intel, el cual parecería intentar apagar y reencender las salidas de audio, con el molesto resultado que se describio anteriormente.
-Si no has tocado ninguna configuracion de los archivos de alsa-base.conf y power_save, obvia esto y ejecuta el script sin problemas.
-
-* Asegurate de ejecutarlo como usuario root
-
-     ./deletepops.sh
-
-*Troubleshooting*
-
-Si estuviste manoseando el código antes de lanzar el script, sigue estos pasos:
-
-PASO #1
-Comprueba si el ahorro de energía del controlador está activado (culpable de los molestos POPs):
-
-     cat /sys/module/snd_hda_intel/parameters/power_save
+# ALC892 Pops Fixer 🎧
+![N|Solid](https://www.solvetic.com/uploads/tutorials/monthly_04_2020/0e09654e6e73e9d8fffae22c88d99877.png)
 
 
-*     Si devuelve 1 → está activado (malo).
+Este script de Bash soluciona el molesto problema de los chasquidos o "pops" de audio en chipsets **Realtek ALC892** (y otros controladores `snd-hda-intel`) en sistemas Linux.
 
-*     Si devuelve 0 → ya está desactivado (bien).
+El problema ocurre generalmente debido a las funciones de ahorro de energía del driver, que apagan el controlador de sonido tras unos segundos de inactividad, generando un ruido eléctrico al reactivarse.
 
-*     Si está en 1, puedes apagarlo temporalmente con:
+## Características
+- **Validación de Root:** Verifica que tengas permisos de administrador.
+- **Prevención de Duplicados:** Comprueba si el fix ya existe para no ensuciar tus archivos de configuración.
+- **Instalación Segura:** Crea el archivo de configuración si no existe o añade la línea al final si ya hay otros parámetros.
+- **Feedback Visual:** Incluye una barra de progreso y mensajes claros con colores.
 
-     echo 0 | sudo tee /sys/module/snd_hda_intel/parameters/power_save
+## Instalación y Uso
 
+1. **Clona o descarga el script:**
+   Guarda el código en un archivo llamado `fix_pops.sh`.
 
-PASO #2
-Verifica si ya existe la configuración en el archivo alsa-base.conf:
+2. **Dale permisos de ejecución:**
+   ```bash
+   chmod +x fix_pops.sh
+   ```
 
-     grep -c 'options snd-hda-intel power_save=0 power_save_controller=N' /etc/modprobe.d/alsa-base.conf
+3. **Ejecuta el script con sudo:**
+   ```bash
+   sudo ./fix_pops.sh
+   ```
 
+## ¿Qué es lo que hace exactamente?
+El script añade la siguiente configuración a `/etc/modprobe.d/alsa-base.conf`:
 
-*     Si devuelve 1 → ya está aplicado.
+```conf
+options snd-hda-intel power_save=0 power_save_controller=N
+```
 
-*     Si devuelve 0 → no está, ejecuta el script para parchearlo.
+- `power_save=0`: Desactiva el tiempo de espera para el apagado del códec.
+- `power_save_controller=N`: Desactiva el ahorro de energía del controlador por completo.
+
+## Cómo aplicar los cambios
+Para que los cambios surtan efecto, puedes:
+*   Reiniciar tu computadora (recomendado).
+*   O forzar la recarga de ALSA: `sudo alsa force-reload`.
+
+---
+**Nota:** En laptops, esto podría aumentar ligeramente el consumo de batería, aunque la diferencia suele ser imperceptible.
